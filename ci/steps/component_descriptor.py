@@ -128,6 +128,7 @@ def build_component_descriptor(
     if glci.model.BuildTarget.COMPONENT_DESCRIPTOR in build_target_set:
         product.v2.upload_component_descriptor_v2_to_oci_registry(
             component_descriptor_v2=component_descriptor,
+            on_exist=product.v2.UploadMode.OVERWRITE,
         )
 
     if snapshot_repo_base_url:

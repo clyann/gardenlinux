@@ -13,14 +13,12 @@ def pre_build_step(
     gardenlinux_epoch: str,
     architecture: str,
     platform: str,
-    publishing_actions: str,
+    build_targets: str,
 ):
-    publishing_actions = [
-        glci.model.PublishingAction(action.strip()) for action in publishing_actions.split(',')
-    ]
-    if glci.model.PublishingAction.BUILD_ONLY in publishing_actions:
+    build_target_set = glci.model.BuildTarget.set_from_str(build_targets)
+    if glci.model.BuildTarget.BUILD in build_target_set:
         print(
-            f'publishing action {glci.model.PublishingAction.BUILD_ONLY=} specified - exiting now'
+            f'publishing action {glci.model.BuildTarget.BUILD=} specified - exiting now'
         )
         sys.exit(0)
 
